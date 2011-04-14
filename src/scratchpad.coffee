@@ -64,7 +64,7 @@ define((require, exports, module) ->
             @totalScratchpads++
             
             generateTab = =>
-                return new apf.page
+                new_page = new apf.page
                     id: "scratchpad#{@totalScratchpads}"
                     caption: "Scratch Pad #{@totalScratchpads + 1}"
                     name: "scratchpadPage#{@totalScratchpads}"
@@ -80,6 +80,11 @@ define((require, exports, module) ->
                             width: 780
                             height: 400
                     ]
+                new_page.addEventListener 'focus', ->
+                    code_editor = new_page.selectSingleNode 'codeeditor'
+                    code_editor.enable()
+                    
+                return new_page
                 
             @scratchpadTabs.appendChild generateTab()
 )

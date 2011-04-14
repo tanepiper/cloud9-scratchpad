@@ -66,7 +66,8 @@
         var generateTab;
         this.totalScratchpads++;
         generateTab = __bind(function() {
-          return new apf.page({
+          var new_page;
+          new_page = new apf.page({
             id: "scratchpad" + this.totalScratchpads,
             caption: "Scratch Pad " + (this.totalScratchpads + 1),
             name: "scratchpadPage" + this.totalScratchpads,
@@ -84,26 +85,14 @@
               })
             ]
           });
+          new_page.addEventListener('focus', function() {
+            var code_editor;
+            code_editor = new_page.selectSingleNode('codeeditor');
+            return code_editor.enable();
+          });
+          return new_page;
         }, this);
         return this.scratchpadTabs.appendChild(generateTab());
-        /*
-                    @totalScratchpads++
-                    
-                    new_code = new apf.codeeditor
-                        id: "scratchpad#{@totalScratchpads}Code"
-                        flex: 1
-                        realtime: true
-                        border: 0
-                        showprintmargin: false
-                        printmargincolumn: 0
-                        width: 780
-                        height: 400
-                        
-                    new_tab = @scratchpadTabs.add "Scratch Pad #{@totalScratchpads + 1}", "scratchpad-#{@totalScratchpads}"
-                    setTimeout ->
-                        new_tab.insertMarkup new_code
-                    , 1
-                    */
       }
     });
   });
