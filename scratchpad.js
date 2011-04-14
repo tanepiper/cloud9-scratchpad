@@ -43,8 +43,7 @@
         this.scratchpadAdd = scratchpadAdd;
         this.scratchpadTabs = scratchpadTabs;
         this.scratchpadWindow = scratchpadWindow;
-        this.scratchpadClose = scratchpadClose;
-        return this.scratchpad0Code = scratchpad0Code;
+        return this.scratchpadClose = scratchpadClose;
       },
       enable: function() {
         this.nodes.each(function(item) {
@@ -64,27 +63,29 @@
         this.scratchpadWindow.destroy(true, true);
       },
       addTab: function() {
-        var scratch_pad;
+        var generateTab;
         this.totalScratchpads++;
-        scratch_pad = new apf.page({
-          id: "scratchpad" + this.totalScratchpads,
-          caption: "Scratch Pad " + (this.totalScratchpads + 1),
-          name: "scratchpadPage" + this.totalScratchpads,
-          closebtn: true,
-          childNodes: [
-            new apf.codeeditor({
-              id: "scratchpad" + this.totalScratchpads + "Code",
-              flex: 1,
-              realtime: true,
-              border: 0,
-              showprintmargin: false,
-              printmargincolumn: 0,
-              width: 780,
-              height: 400
-            })
-          ]
-        });
-        return this.scratchpadTabs.appendChild(scratch_pad);
+        generateTab = __bind(function() {
+          return new apf.page({
+            id: "scratchpad" + this.totalScratchpads,
+            caption: "Scratch Pad " + (this.totalScratchpads + 1),
+            name: "scratchpadPage" + this.totalScratchpads,
+            closebtn: true,
+            childNodes: [
+              new apf.codeeditor({
+                id: "scratchpad" + this.totalScratchpads + "Code",
+                flex: 1,
+                realtime: true,
+                border: 0,
+                showprintmargin: false,
+                printmargincolumn: 0,
+                width: 780,
+                height: 400
+              })
+            ]
+          });
+        }, this);
+        return this.scratchpadTabs.appendChild(generateTab());
         /*
                     @totalScratchpads++
                     
