@@ -1,0 +1,77 @@
+<a:application xmlns:a="http://ajax.org/2005/aml">
+    <a:window
+        id = "scratchpadWindow"
+        title = "Scratchpad"
+        center = "true"
+        modal = "false"
+        buttons = "close"
+        kbclose = "true"
+        width = "800"
+        height = "500">
+        
+        <a:tab id="scratchpadTabs" height="400">
+            <a:page id="scratchpad1" caption="Scratchpad 1">
+                <a:codeeditor
+                    id="scratchpad1Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="400" />
+            </a:page>
+            <!--
+            <a:page id="scratchpad2" caption="Scratchpad 2">
+                <a:codeeditor
+                    id="scratchpad2Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="340" />
+            </a:page>
+            <a:page id="scratchpad3" caption="Scratchpad 3">
+                <a:codeeditor
+                    id="scratchpad3Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="340" />
+            </a:page>
+            <a:page id="scratchpad4" caption="Scratchpad 4">
+                <a:codeeditor
+                    id="scratchpad4Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="340" />
+            </a:page>
+            <a:page id="scratchpad5" caption="Scratchpad 5">
+                <a:codeeditor
+                    id="scratchpad5Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="340" />
+            </a:page>
+            -->
+        </a:tab>
+        <a:divider />
+        <a:hbox pack="start" padding="5" edge="10 10 5 10">
+            <!--<a:button id="scratchpadAdd">Add New Pad</a:button>-->
+            <a:button id="scratchpadClose">Close</a:button>
+        </a:hbox>
+    </a:window>
+</a:application>
