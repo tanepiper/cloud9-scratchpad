@@ -21,6 +21,7 @@
       hotitems: {},
       nodes: [],
       totalScratchpads: 0,
+      currentScratch: null,
       hook: function() {
         return this.nodes.push(mnuView.appendChild(new apf.item({
           caption: 'Scratchpad',
@@ -40,10 +41,22 @@
         }, this));
       },
       init: function() {
-        this.scratchpadAdd = scratchpadAdd;
         this.scratchpadTabs = scratchpadTabs;
+        /*
+                    @scratchpadTabs.addEventListener 'focus', (e) =>
+                        console.log 'focus', e
+                        e.currentTarget.enable()
+                    @scratchpadTabs.addEventListener 'beforeswitch', =>
+                        console.log 'beforeswitch', arguments
+                    @scratchpadTabs.addEventListener 'afterswitch', =>
+                        console.log 'afterswitch', arguments
+                    @scratchpadTabs.addEventListener 'close', =>
+                        console.log 'close', arguments
+                    */
+        this.scratchpadAdd = scratchpadAdd;
         this.scratchpadWindow = scratchpadWindow;
-        return this.scratchpadClose = scratchpadClose;
+        this.scratchpadClose = scratchpadClose;
+        return this.currentScratch = scratchpad0Code;
       },
       enable: function() {
         this.nodes.each(function(item) {
@@ -66,29 +79,23 @@
         var generateTab;
         this.totalScratchpads++;
         generateTab = __bind(function() {
-          var new_page;
+          var new_editor, new_page;
+          new_editor = new apf.textarea({
+            id: "scratchpad" + this.totalScratchpads + "Code",
+            flex: 1,
+            realtime: true,
+            border: 0,
+            showprintmargin: false,
+            printmargincolumn: 0,
+            width: 780,
+            height: 400
+          });
           new_page = new apf.page({
             id: "scratchpad" + this.totalScratchpads,
             caption: "Scratch Pad " + (this.totalScratchpads + 1),
             name: "scratchpadPage" + this.totalScratchpads,
             closebtn: true,
-            childNodes: [
-              new apf.codeeditor({
-                id: "scratchpad" + this.totalScratchpads + "Code",
-                flex: 1,
-                realtime: true,
-                border: 0,
-                showprintmargin: false,
-                printmargincolumn: 0,
-                width: 780,
-                height: 400
-              })
-            ]
-          });
-          new_page.addEventListener('focus', function() {
-            var code_editor;
-            code_editor = new_page.selectSingleNode('codeeditor');
-            return code_editor.enable();
+            childNodes: [new_editor]
           });
           return new_page;
         }, this);

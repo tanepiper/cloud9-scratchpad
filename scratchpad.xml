@@ -11,7 +11,7 @@
         
         <a:tab id="scratchpadTabs" height="400">
             <a:page id="scratchpad0" caption="Scratchpad 1">
-                <a:codeeditor
+                <a:textarea
                     id="scratchpad0Code"
                     flex="1"
                     realtime="true"

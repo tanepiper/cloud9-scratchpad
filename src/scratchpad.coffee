@@ -17,6 +17,7 @@ define((require, exports, module) ->
         nodes: []
         
         totalScratchpads: 0
+        currentScratch: null
         
         hook: ->
             @nodes.push mnuView.appendChild new apf.item
@@ -35,10 +36,26 @@ define((require, exports, module) ->
                 @addTab()
             
         init: ->
-            @scratchpadAdd = scratchpadAdd
+            
             @scratchpadTabs = scratchpadTabs
+            
+            ###
+            @scratchpadTabs.addEventListener 'focus', (e) =>
+                console.log 'focus', e
+                e.currentTarget.enable()
+            @scratchpadTabs.addEventListener 'beforeswitch', =>
+                console.log 'beforeswitch', arguments
+            @scratchpadTabs.addEventListener 'afterswitch', =>
+                console.log 'afterswitch', arguments
+            @scratchpadTabs.addEventListener 'close', =>
+                console.log 'close', arguments
+            ###
+            @scratchpadAdd = scratchpadAdd
+            
             @scratchpadWindow = scratchpadWindow
             @scratchpadClose = scratchpadClose
+            
+            @currentScratch = scratchpad0Code
             
         enable : () ->
             @nodes.each (item) ->
@@ -64,25 +81,24 @@ define((require, exports, module) ->
             @totalScratchpads++
             
             generateTab = =>
+                new_editor = new apf.textarea
+                    id: "scratchpad#{@totalScratchpads}Code"
+                    flex: 1
+                    realtime: true
+                    border: 0
+                    showprintmargin: false
+                    printmargincolumn: 0
+                    width: 780
+                    height: 400
+                
                 new_page = new apf.page
                     id: "scratchpad#{@totalScratchpads}"
                     caption: "Scratch Pad #{@totalScratchpads + 1}"
                     name: "scratchpadPage#{@totalScratchpads}"
                     closebtn: true
                     childNodes: [
-                        new apf.codeeditor
-                            id: "scratchpad#{@totalScratchpads}Code"
-                            flex: 1
-                            realtime: true
-                            border: 0
-                            showprintmargin: false
-                            printmargincolumn: 0
-                            width: 780
-                            height: 400
+                        new_editor
                     ]
-                new_page.addEventListener 'focus', ->
-                    code_editor = new_page.selectSingleNode 'codeeditor'
-                    code_editor.enable()
                     
                 return new_page
                 
