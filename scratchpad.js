@@ -32,19 +32,19 @@
       },
       scratchpad: function() {
         ext.initExtension(this);
-        this.scratchpadWindow.show();
+        return this.scratchpadWindow.show();
+      },
+      init: function() {
+        this.scratchpadTabs = scratchpadTabs;
+        this.scratchpadAdd = scratchpadAdd;
+        this.scratchpadClose = scratchpadClose;
+        this.scratchpadWindow = scratchpadWindow;
         this.scratchpadClose.addEventListener('click', __bind(function() {
           return this.scratchpadWindow.close();
         }, this));
         return this.scratchpadAdd.addEventListener('click', __bind(function() {
           return this.addTab();
         }, this));
-      },
-      init: function() {
-        this.scratchpadTabs = scratchpadTabs;
-        this.scratchpadAdd = scratchpadAdd;
-        this.scratchpadClose = scratchpadClose;
-        return this.scratchpadWindow = scratchpadWindow;
       },
       enable: function() {
         this.nodes.each(function(item) {

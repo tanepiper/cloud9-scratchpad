@@ -29,17 +29,16 @@ define((require, exports, module) ->
             ext.initExtension @
             @scratchpadWindow.show()
             
-            @scratchpadClose.addEventListener 'click', =>
-                @scratchpadWindow.close()
-                
-            @scratchpadAdd.addEventListener 'click', =>
-                @addTab()
-            
         init: ->
             @scratchpadTabs = scratchpadTabs
             @scratchpadAdd = scratchpadAdd
             @scratchpadClose = scratchpadClose
             @scratchpadWindow = scratchpadWindow
+            
+            @scratchpadClose.addEventListener 'click', =>
+                @scratchpadWindow.close()
+            @scratchpadAdd.addEventListener 'click', =>
+                @addTab()
             
         enable : () ->
             @nodes.each (item) ->
