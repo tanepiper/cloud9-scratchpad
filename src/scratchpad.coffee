@@ -24,10 +24,12 @@ define((require, exports, module) ->
                 caption: 'Scratchpad'
                 onclick: =>
                     @scratchpad()
-        
+                    return
+            return
         scratchpad: ->
             ext.initExtension @
             @scratchpadWindow.show()
+            return
             
         init: ->
             @scratchpadTabs = scratchpadTabs
@@ -37,10 +39,14 @@ define((require, exports, module) ->
             
             @scratchpadClose.addEventListener 'click', =>
                 @scratchpadWindow.close()
+                return
             @scratchpadAdd.addEventListener 'click', =>
                 @addTab()
+                return
             @scratchpadTabs.addEventListener 'close', =>
                 @totalScratchpads--
+                return
+            return
             
         enable : () ->
             @nodes.each (item) ->
@@ -95,4 +101,5 @@ define((require, exports, module) ->
                 return new_page
                 
             @scratchpadTabs.appendChild generateTab()
+            return
 )

@@ -23,16 +23,16 @@
       totalScratchpads: 0,
       currentScratch: null,
       hook: function() {
-        return this.nodes.push(mnuView.appendChild(new apf.item({
+        this.nodes.push(mnuView.appendChild(new apf.item({
           caption: 'Scratchpad',
           onclick: __bind(function() {
-            return this.scratchpad();
+            this.scratchpad();
           }, this)
         })));
       },
       scratchpad: function() {
         ext.initExtension(this);
-        return this.scratchpadWindow.show();
+        this.scratchpadWindow.show();
       },
       init: function() {
         this.scratchpadTabs = scratchpadTabs;
@@ -40,13 +40,13 @@
         this.scratchpadClose = scratchpadClose;
         this.scratchpadWindow = scratchpadWindow;
         this.scratchpadClose.addEventListener('click', __bind(function() {
-          return this.scratchpadWindow.close();
+          this.scratchpadWindow.close();
         }, this));
         this.scratchpadAdd.addEventListener('click', __bind(function() {
-          return this.addTab();
+          this.addTab();
         }, this));
-        return this.scratchpadTabs.addEventListener('close', __bind(function() {
-          return this.totalScratchpads--;
+        this.scratchpadTabs.addEventListener('close', __bind(function() {
+          this.totalScratchpads--;
         }, this));
       },
       enable: function() {
@@ -95,7 +95,7 @@
           });
           return new_page;
         }, this);
-        return this.scratchpadTabs.appendChild(generateTab());
+        this.scratchpadTabs.appendChild(generateTab());
       }
     });
   });
