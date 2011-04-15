@@ -40,10 +40,10 @@
         this.scratchpadClose = scratchpadClose;
         this.scratchpadWindow = scratchpadWindow;
         this.scratchpadClose.addEventListener('click', __bind(function() {
-          this.scratchpadWindow.close();
+          return this.scratchpadWindow.close();
         }, this));
         this.scratchpadAdd.addEventListener('click', __bind(function() {
-          this.addTab();
+          return this.addTab();
         }, this));
         this.scratchpadTabs.addEventListener('close', __bind(function() {
           this.totalScratchpads--;
