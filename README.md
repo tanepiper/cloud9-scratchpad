@@ -40,3 +40,7 @@ it add the following:
 For the Mac, use `Command-Option-L`, or choose your own key shortcuts.
 
 Author: Tane Piper (@tanepiper)
+
+Screenshot
+----------
+![A picture of Scratchpad](http://dl.dropbox.com/u/147175/scratchpad.png)
