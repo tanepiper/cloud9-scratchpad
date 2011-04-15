@@ -39,6 +39,8 @@ define((require, exports, module) ->
                 @scratchpadWindow.close()
             @scratchpadAdd.addEventListener 'click', =>
                 @addTab()
+            @scratchpadTabs.addEventListener 'close', =>
+                @totalScratchpads--
             
         enable : () ->
             @nodes.each (item) ->

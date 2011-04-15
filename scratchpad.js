@@ -42,8 +42,11 @@
         this.scratchpadClose.addEventListener('click', __bind(function() {
           return this.scratchpadWindow.close();
         }, this));
-        return this.scratchpadAdd.addEventListener('click', __bind(function() {
+        this.scratchpadAdd.addEventListener('click', __bind(function() {
           return this.addTab();
+        }, this));
+        return this.scratchpadTabs.addEventListener('close', __bind(function() {
+          return this.totalScratchpads--;
         }, this));
       },
       enable: function() {
