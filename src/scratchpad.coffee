@@ -36,26 +36,10 @@ define((require, exports, module) ->
                 @addTab()
             
         init: ->
-            
             @scratchpadTabs = scratchpadTabs
-            
-            ###
-            @scratchpadTabs.addEventListener 'focus', (e) =>
-                console.log 'focus', e
-                e.currentTarget.enable()
-            @scratchpadTabs.addEventListener 'beforeswitch', =>
-                console.log 'beforeswitch', arguments
-            @scratchpadTabs.addEventListener 'afterswitch', =>
-                console.log 'afterswitch', arguments
-            @scratchpadTabs.addEventListener 'close', =>
-                console.log 'close', arguments
-            ###
             @scratchpadAdd = scratchpadAdd
-            
-            @scratchpadWindow = scratchpadWindow
             @scratchpadClose = scratchpadClose
-            
-            @currentScratch = scratchpad0Code
+            @scratchpadWindow = scratchpadWindow
             
         enable : () ->
             @nodes.each (item) ->
@@ -74,6 +58,13 @@ define((require, exports, module) ->
                 item.destroy true, true
                 return
             @nodes = [];
+            
+            @scratchpadClose.removeEventListener 'click'
+            @scratchpadAdd.removeEventListener 'click'
+            @scratchpadTabs.destroy true, true
+            @scratchpadAdd.destroy true, true
+            @scratchpadClose.destroy true, true
+            
             @scratchpadWindow.destroy true, true
             return
             

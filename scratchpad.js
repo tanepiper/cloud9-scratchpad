@@ -42,21 +42,9 @@
       },
       init: function() {
         this.scratchpadTabs = scratchpadTabs;
-        /*
-                    @scratchpadTabs.addEventListener 'focus', (e) =>
-                        console.log 'focus', e
-                        e.currentTarget.enable()
-                    @scratchpadTabs.addEventListener 'beforeswitch', =>
-                        console.log 'beforeswitch', arguments
-                    @scratchpadTabs.addEventListener 'afterswitch', =>
-                        console.log 'afterswitch', arguments
-                    @scratchpadTabs.addEventListener 'close', =>
-                        console.log 'close', arguments
-                    */
         this.scratchpadAdd = scratchpadAdd;
-        this.scratchpadWindow = scratchpadWindow;
         this.scratchpadClose = scratchpadClose;
-        return this.currentScratch = scratchpad0Code;
+        return this.scratchpadWindow = scratchpadWindow;
       },
       enable: function() {
         this.nodes.each(function(item) {
@@ -73,6 +61,11 @@
           item.destroy(true, true);
         });
         this.nodes = [];
+        this.scratchpadClose.removeEventListener('click');
+        this.scratchpadAdd.removeEventListener('click');
+        this.scratchpadTabs.destroy(true, true);
+        this.scratchpadAdd.destroy(true, true);
+        this.scratchpadClose.destroy(true, true);
         this.scratchpadWindow.destroy(true, true);
       },
       addTab: function() {
