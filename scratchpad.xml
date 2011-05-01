@@ -1,16 +1,17 @@
 <a:application xmlns:a="http://ajax.org/2005/aml">
-    <a:window
-        id = "scratchpadWindow"
-        title = "Scratchpad"
-        center = "true"
-        modal = "false"
-        buttons = "close"
-        kbclose = "true"
-        width = "800"
-        height = "500">
-        
-        <a:tab id="scratchpadTabs" height="400">
-            <a:page id="scratchpad0" caption="Scratchpad 1">
+    <a:tab id="tabScratchpad" skin="docktab" visible="false">
+        <a:page id="scratchpad0" caption="Scratchpad 1">
+            <a:vbox anchors="0 0 0 0">
+                <a:toolbar>
+                    <a:bar border="0 0 1 0">
+                        <a:button
+                          caption  = "Add Scratchpad" 
+                          tooltip  = "Add a new scratchpad tab"
+                          onclick  = "
+                            require('ext/scratchpad/scratchpad').addTab()
+                          " />
+                    </a:bar>
+                </a:toolbar>
                 <a:textarea
                     id="scratchpad0Code"
                     flex="1"
@@ -18,14 +19,12 @@
                     border="0"
                     showprintmargin="false"
                     printmargincolumn="0"
-                    width="780"
-                    height="400" />
-            </a:page>
-        </a:tab>
-        <a:divider />
-        <a:hbox pack="start" padding="5" edge="10 10 5 10">
+                    width="100%"
+                    height="100%" />
+                </a:vbox>
+        </a:page>
+        <a:page id="scratchpadControls" caption="Scratchpad Controls">
             <a:button id="scratchpadAdd">Add New Pad</a:button>
-            <a:button id="scratchpadClose">Close</a:button>
-        </a:hbox>
-    </a:window>
+        </a:page>
+    </a:tab>
 </a:application>

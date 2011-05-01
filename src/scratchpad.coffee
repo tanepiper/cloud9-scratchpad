@@ -1,7 +1,8 @@
-define((require, exports, module) ->
+define (require, exports, module) ->
     ide = require 'core/ide'
     ext = require 'core/ext'
     util = require 'core/util'
+    dock = require 'ext/dockpanel/dockpanel'
     editors = require 'ext/editors/editors'
     markup = require 'text!ext/scratchpad/scratchpad.xml'
     
@@ -11,40 +12,26 @@ define((require, exports, module) ->
         type: ext.GENERAL
         alone: yes
         markup: markup
-        commands:
-            'scratchpad': hint: 'Show the scratchpad'
         hotitems: {}
         nodes: []
         
         totalScratchpads: 0
         currentScratch: null
         
-        hook: ->
-            @nodes.push mnuView.appendChild new apf.item
-                caption: 'Scratchpad'
-                onclick: =>
-                    @scratchpad()
-                    return
-            return
-        scratchpad: ->
-            ext.initExtension @
-            @scratchpadWindow.show()
+        hook: ->     
+            sectionPad = dock.getSection "scratchpad"
+            dock.registerPage sectionPad, null, =>
+                ext.initExtension @
+                return scratchpad0
+            ,
+                primary:
+                    backgroundImage: "/static/style/images/debugicons.png"
+                    defaultState: { x: -6, y: -217 }
+                    activeState: { x: -6, y: -217 }
             return
             
         init: ->
-            @scratchpadTabs = scratchpadTabs
-            @scratchpadAdd = scratchpadAdd
-            @scratchpadClose = scratchpadClose
-            @scratchpadWindow = scratchpadWindow
-            
-            @scratchpadClose.addEventListener 'click', =>
-                @scratchpadWindow.close()
-            @scratchpadAdd.addEventListener 'click', =>
-                @addTab()
-            @scratchpadTabs.addEventListener 'close', =>
-                @totalScratchpads--
-                return
-            return
+            @tabScratchpad = tabScratchpad
             
         enable : () ->
             @nodes.each (item) ->
@@ -62,15 +49,7 @@ define((require, exports, module) ->
             @nodes.each (item) ->
                 item.destroy true, true
                 return
-            @nodes = [];
-            
-            @scratchpadClose.removeEventListener 'click'
-            @scratchpadAdd.removeEventListener 'click'
-            @scratchpadTabs.destroy true, true
-            @scratchpadAdd.destroy true, true
-            @scratchpadClose.destroy true, true
-            
-            @scratchpadWindow.destroy true, true
+            @nodes = []
             return
             
         addTab: ->
@@ -98,6 +77,5 @@ define((require, exports, module) ->
                     
                 return new_page
                 
-            @scratchpadTabs.appendChild generateTab()
+            @tabScratchpad.appendChild generateTab()
             return
-)

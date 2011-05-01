@@ -1,10 +1,11 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   define(function(require, exports, module) {
-    var editors, ext, ide, markup, util;
+    var dock, editors, ext, ide, markup, util;
     ide = require('core/ide');
     ext = require('core/ext');
     util = require('core/util');
+    dock = require('ext/dockpanel/dockpanel');
     editors = require('ext/editors/editors');
     markup = require('text!ext/scratchpad/scratchpad.xml');
     return ext.register('ext/scratchpad/scratchpad', {
@@ -13,41 +14,32 @@
       type: ext.GENERAL,
       alone: true,
       markup: markup,
-      commands: {
-        'scratchpad': {
-          hint: 'Show the scratchpad'
-        }
-      },
       hotitems: {},
       nodes: [],
       totalScratchpads: 0,
       currentScratch: null,
       hook: function() {
-        this.nodes.push(mnuView.appendChild(new apf.item({
-          caption: 'Scratchpad',
-          onclick: __bind(function() {
-            this.scratchpad();
-          }, this)
-        })));
-      },
-      scratchpad: function() {
-        ext.initExtension(this);
-        this.scratchpadWindow.show();
+        var sectionPad;
+        sectionPad = dock.getSection("scratchpad");
+        dock.registerPage(sectionPad, null, __bind(function() {
+          ext.initExtension(this);
+          return scratchpad0;
+        }, this), {
+          primary: {
+            backgroundImage: "/static/style/images/debugicons.png",
+            defaultState: {
+              x: -6,
+              y: -217
+            },
+            activeState: {
+              x: -6,
+              y: -217
+            }
+          }
+        });
       },
       init: function() {
-        this.scratchpadTabs = scratchpadTabs;
-        this.scratchpadAdd = scratchpadAdd;
-        this.scratchpadClose = scratchpadClose;
-        this.scratchpadWindow = scratchpadWindow;
-        this.scratchpadClose.addEventListener('click', __bind(function() {
-          return this.scratchpadWindow.close();
-        }, this));
-        this.scratchpadAdd.addEventListener('click', __bind(function() {
-          return this.addTab();
-        }, this));
-        this.scratchpadTabs.addEventListener('close', __bind(function() {
-          this.totalScratchpads--;
-        }, this));
+        return this.tabScratchpad = tabScratchpad;
       },
       enable: function() {
         this.nodes.each(function(item) {
@@ -64,12 +56,6 @@
           item.destroy(true, true);
         });
         this.nodes = [];
-        this.scratchpadClose.removeEventListener('click');
-        this.scratchpadAdd.removeEventListener('click');
-        this.scratchpadTabs.destroy(true, true);
-        this.scratchpadAdd.destroy(true, true);
-        this.scratchpadClose.destroy(true, true);
-        this.scratchpadWindow.destroy(true, true);
       },
       addTab: function() {
         var generateTab;
@@ -95,7 +81,7 @@
           });
           return new_page;
         }, this);
-        this.scratchpadTabs.appendChild(generateTab());
+        this.tabScratchpad.appendChild(generateTab());
       }
     });
   });

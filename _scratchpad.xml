@@ -1,0 +1,31 @@
+<a:application xmlns:a="http://ajax.org/2005/aml">
+    <a:window
+        id = "scratchpadWindow"
+        title = "Scratchpad"
+        center = "true"
+        modal = "false"
+        buttons = "close"
+        kbclose = "true"
+        width = "800"
+        height = "500">
+        
+        <a:tab id="scratchpadTabs" height="400">
+            <a:page id="scratchpad0" caption="Scratchpad 1">
+                <a:textarea
+                    id="scratchpad0Code"
+                    flex="1"
+                    realtime="true"
+                    border="0"
+                    showprintmargin="false"
+                    printmargincolumn="0"
+                    width="780"
+                    height="400" />
+            </a:page>
+        </a:tab>
+        <a:divider />
+        <a:hbox pack="start" padding="5" edge="10 10 5 10">
+            <a:button id="scratchpadAdd">Add New Pad</a:button>
+            <a:button id="scratchpadClose">Close</a:button>
+        </a:hbox>
+    </a:window>
+</a:application>
