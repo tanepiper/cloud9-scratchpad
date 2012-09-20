@@ -1,5 +1,5 @@
 Cloud9 Scratchpad Extension
-==================================
+===========================
 
 This is a simple extension to add a scratchpad window to Cloud9. If you are
 refactoring code, it makes it much easier to copy and paste blocks of code
@@ -9,14 +9,18 @@ and a local text editor
 Installation
 ------------
 
-This extension currently only works with self-hosted copies of Cloud9 (either via
-cloning `https://github.com/ajaxorg/cloud9` or `npm install cloud9`).  Third-party
-extensions are not supported on c9.io.
+This extension works with c9.io and with self-hosted copies of Cloud9 (either via
+cloning `https://github.com/ajaxorg/cloud9` or `npm install cloud9`). To install
+it, open the `Tools -> Extension Manager` window in Cloud9, and enter the extension
+path:
 
-    git clone git://github.com/tanepiper/cloud9-scratchpad.git cloud9/client/ext/scratchpad
+    https://github.com/lennartcl/cloud9-scratchpad
 
-Open the `Windows -> Extension Manager` window, put the path to the extension in
+or
+
     ext/scratchpad/scratchpad
+
+for the self-hosted version.
 
 Click add.  You can now open the window via the View menu.
 

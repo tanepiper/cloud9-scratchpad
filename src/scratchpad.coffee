@@ -3,7 +3,8 @@ define((require, exports, module) ->
     ext = require 'core/ext'
     util = require 'core/util'
     editors = require 'ext/editors/editors'
-    markup = require 'text!ext/scratchpad/scratchpad.xml'
+    markup = require './scratchpad.xml.js'
+    menus = require 'ext/menus/menus'
     
     return ext.register 'ext/scratchpad/scratchpad',
         name: 'Scratchpad'
@@ -20,6 +21,7 @@ define((require, exports, module) ->
         currentScratch: null
         
         hook: ->
+            mnuView = menus.addItemByPath 'View'
             @nodes.push mnuView.appendChild new apf.item
                 caption: 'Scratchpad'
                 onclick: =>
