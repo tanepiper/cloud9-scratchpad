@@ -1,13 +1,14 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   define(function(require, exports, module) {
-    var editors, ext, ide, markup, util;
+    var editors, ext, ide, markup, util, menus;
     ide = require('core/ide');
     ext = require('core/ext');
     util = require('core/util');
     editors = require('ext/editors/editors');
-    markup = require('text!ext/scratchpad/scratchpad.xml');
-    return ext.register('ext/scratchpad/scratchpad', {
+    markup = require('./scratchpad.xml.js');
+    menus = require("ext/menus/menus");
+    return module.exports = ext.register('ext/scratchpad/scratchpad', {
       name: 'Scratchpad',
       dev: 'Tane Piper',
       type: ext.GENERAL,
@@ -23,6 +24,7 @@
       totalScratchpads: 0,
       currentScratch: null,
       hook: function() {
+        var mnuView = menus.addItemByPath("View");
         this.nodes.push(mnuView.appendChild(new apf.item({
           caption: 'Scratchpad',
           onclick: __bind(function() {
